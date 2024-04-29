@@ -1,0 +1,45 @@
+*,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.header {
+    margin-bottom: 50px;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.filter {
+    width: 100%;
+}
+
+.post {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.posttitle {
+    margin-bottom: 7px;
+}
+
+.paragraph {
+    color: red;
+}
