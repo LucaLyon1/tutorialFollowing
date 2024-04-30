@@ -1,7 +1,7 @@
 let container = document.getElementById("postContainer");
 let loader = document.getElementById("loader");
 
-const limit = 10;
+const limit = 5;
 let page = 1;
 
 async function addPost() {
@@ -21,17 +21,19 @@ async function addPost() {
 function showLoader() {
     loader.classList.add('show');
     setTimeout(() => {
+        addPost();
         loader.classList.remove('show');
         page++;
-        addPost();
     }, 1000);
 }
 
 window.addEventListener('scroll', () => {
-    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (Math.round(scrollHeight - scrollTop) === clientHeight) {
         showLoader();
     }
-})
+});
 
 addPost();
 
