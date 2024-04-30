@@ -1,18 +1,38 @@
 let container = document.getElementById("postContainer");
+let loader = document.getElementById("loader");
 
-function addPost() {
-    const newDiv = document.createElement("div");
-    newDiv.classList.add("post");
+const limit = 10;
+let page = 1;
 
-    newDiv.innerHTML = `
-        <h2>Lorem Ipsum</h2>
-        <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit illum totam eius iusto obcaecati error dolore maiores, quasi aliquid laboriosam distinctio laudantium. Error, numquam ullam dolor odio explicabo voluptatem. Alias.</p>
-    `;
-
-    document.body.appendChild(newDiv);
+async function addPost() {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`);
+    const posts = await res.json();
+    posts.forEach((post) => {
+        let newDiv = document.createElement("div");
+        newDiv.classList.add("post");
+        newDiv.innerHTML = `
+            <h2>${post.title}</h2>
+            <p class="paragraph">${post.body}</p>
+        `;
+        document.body.appendChild(newDiv);
+    });
 }
 
-for (let i = 0; i < 10; i++) {
-    addPost();
+function showLoader() {
+    loader.classList.add('show');
+    setTimeout(() => {
+        loader.classList.remove('show');
+        page++;
+        addPost();
+    }, 1000);
 }
+
+window.addEventListener('scroll', () => {
+    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+        showLoader();
+    }
+})
+
+addPost();
+
 
