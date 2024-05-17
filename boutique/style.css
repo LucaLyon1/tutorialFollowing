@@ -26,7 +26,8 @@ body {
 }
 
 .searchbar:focus {
-    width: 400px;
+    width: 300px;
+    scale: 1.05;
 }
 
 .navRight {
@@ -43,4 +44,61 @@ body {
 .navRight:hover {
     background-color: rgb(43, 42, 68);
     color: white;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#filters {
+    flex: 1;
+    min-width: 200px;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    flex: 4;
+}
+
+.product {
+    min-width: 200px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    cursor: pointer;
+    transition: 300ms ease-in-out;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+.product:hover {
+    background-color: #efefef;
+    scale: 1.05;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+.product p {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.upperCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.productImage {
+    width: 200px;
+    height: 200px;
+}
+
+.hidden {
+    display: none;
 }
