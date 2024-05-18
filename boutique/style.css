@@ -1,7 +1,20 @@
+:root {
+    --bg-color: #EDF2F4;
+    --font-color: #2B2D42;
+}
+
+.dark-mode {
+    --bg-color: #2B2D42;
+    --font-color: #EDF2F4;
+}
+
 body {
-    width: 80vw;
+    background: var(--bg-color);
+    color: var(--font-color);
+    width: 90vw;
     margin: auto;
     font-size: 1.2em;
+    transition: background 0.7s ease-in-out;
 }
 
 .navbar {
@@ -67,6 +80,7 @@ body {
 }
 
 .product {
+    flex: 0 1 auto;
     min-width: 200px;
     min-height: 200px;
     display: flex;
