@@ -78,9 +78,14 @@ let search = document.getElementById('search');
 let filters = document.getElementById('filters');
 let checkEls = document.querySelectorAll('.check');
 let productEls = [];
+let toggle = document.getElementById("toggle");
+let theme = localStorage.getItem('Theme');
 
 search.addEventListener('input', filterProducts);
 filters.addEventListener('change', filterProducts)
+toggle.addEventListener('click', () => switchMode(toggle.innerText));
+
+if (theme == "Dark") document.body.classList.add("dark-mode")
 
 products.forEach((product) => {
     const productEl = createProductElement(product);
@@ -123,4 +128,16 @@ function filterProducts() {
             productEl.className = 'product hidden';
         }
     })
+}
+
+function switchMode(mode) {
+    if (mode == "Dark") {
+        document.body.classList.add('dark-mode');
+        toggle.innerText = "Light"
+        localStorage.setItem("Theme", "Dark")
+    } else {
+        document.body.classList.remove('dark-mode');
+        toggle.innerText = "Dark"
+        localStorage.setItem("Theme", "Light")
+    }
 }
