@@ -1,4 +1,4 @@
-let balls = [{
+/*let balls = [{
     rad: 20,
     color: "#7F1734",
     x: 50,
@@ -30,11 +30,16 @@ let balls = [{
     dx: 5,
     dy: 8
 },
-]
+]*/
 
 let canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext('2d');
-let gravity = 1 / 3;
+let gravity = 1 / 4;
+let balls = [];
+for (let i = 0; i < 4; i++) {
+    balls.push(randomBall());
+    console.log(balls);
+}
 
 function drawBall(x, y, ballRad, color) {
     ctx.beginPath();
@@ -59,6 +64,7 @@ function animate() {
         b.dy += gravity;
         b.x += b.dx;
         b.y += b.dy;
+        if (b.y > canvas.height - b.rad) b.y = canvas.height - b.rad;
     }
 }
 
@@ -75,4 +81,21 @@ function randomizeColor() {
         hex.push(val[rnd]);
     }
     return '#' + hex.join('');
+}
+
+function randomBall() {
+    let rad = 10 + Math.floor(Math.random() * 90);
+    let color = randomizeColor();
+    let x = rad + Math.random() * (canvas.width - rad * 2);
+    let y = rad + Math.random() * (canvas.height - rad * 2);
+    let dx = Math.floor(Math.random() * 10);
+    let dy = Math.floor(Math.random() * 10);
+    return {
+        rad,
+        color,
+        x,
+        y,
+        dx,
+        dy
+    }
 }
